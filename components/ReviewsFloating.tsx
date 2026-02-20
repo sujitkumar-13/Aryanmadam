@@ -68,7 +68,7 @@ export default function ReviewsFloating() {
       {isOpen && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 animate-in fade-in duration-300">
           <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.4)] border-2 border-[rgb(44,95,124)] animate-in zoom-in duration-300">
-            
+
             {/* Header - Website Theme */}
             <div className="bg-[rgb(44,95,124)] text-white p-5 relative">
               <button
@@ -118,11 +118,10 @@ export default function ReviewsFloating() {
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
-                            className={`${
-                              i < review.rating
+                            className={`${i < review.rating
                                 ? "fill-[#D55A3A] text-[#D55A3A]"
                                 : "text-gray-300"
-                            }`}
+                              }`}
                             size={12}
                           />
                         ))}
@@ -136,7 +135,7 @@ export default function ReviewsFloating() {
 
             {/* Footer - Website Theme */}
             <div className="bg-[rgb(44,95,124)] p-3 text-center">
-              
+
             </div>
           </div>
         </div>

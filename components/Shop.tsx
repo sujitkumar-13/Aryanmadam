@@ -29,10 +29,8 @@ interface Product {
 }
 
 export default function ProductsPage() {
-  // const [selectedCategory, setSelectedCategory] = useState('All');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  // const [categories, setCategories] = useState<string[]>(['All']);
 
   const { addToCart, increaseQty, decreaseQty, items: cartItems } = useCart();
   const searchParams = useSearchParams();
@@ -44,11 +42,6 @@ export default function ProductsPage() {
       setLoading(true);
       try {
         const params = new URLSearchParams();
-        
-        // if (selectedCategory !== 'All') {
-        //   params.append('category', selectedCategory);
-        // }
-        
         if (query) {
           params.append('search', query);
         }
@@ -65,10 +58,6 @@ export default function ProductsPage() {
         console.log('📦 Products received:', data);
         
         setProducts(data);
-
-        // Extract unique categories from products
-        // const uniqueCategories = ['All', ...new Set(data.map((p: Product) => p.category))];
-        // setCategories(uniqueCategories as string[]);
       } catch (error) {
         console.error('❌ Error fetching products:', error);
         setProducts([]);
@@ -101,34 +90,6 @@ export default function ProductsPage() {
             </p>
           )}
         </div>
-
-        {/* REMOVED SIDEBAR - Categories Filter Commented Out */}
-        {/* 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-          <aside className="bg-white border border-gray-200 text-[rgb(44_95_124)] p-6 rounded-2xl space-y-8 shadow-sm h-fit">
-            <div>
-              <h3 className="text-lg font-bold mb-4 text-[rgb(44_95_124)]">
-                Categories
-              </h3>
-
-              <div className="flex flex-wrap gap-2">
-                {categories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setSelectedCategory(cat)}
-                    className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                      selectedCategory === cat
-                        ? 'bg-[rgb(44_95_124)] text-white shadow-md'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </aside>
-        */}
 
           {/* PRODUCTS - Full Width Now */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

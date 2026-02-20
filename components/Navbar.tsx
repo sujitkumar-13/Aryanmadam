@@ -97,24 +97,16 @@ export default function Navbar() {
     { label: "Crystal Angles", slug: "crystalsAndSpiritual/crystal-angles" },
     { label: "Crystal Balls", slug: "crystalsAndSpiritual/crystal-balls" },
     { label: "Crystal Rings", slug: "crystalsAndSpiritual/crystal-rings" },
-    {
-      label: "Anklets",
-      slug: "crystalsAndSpiritual/anklets",
-      submenu: [
-        { label: "Crystal Clocks", slug: "crystalsAndSpiritual/anklets/crystal-clocks" },
-        { label: "Crystal Pyramid", slug: "crystalsAndSpiritual/anklets/crystal-pyramid" },
-        { label: "Crystal Pencils", slug: "crystalsAndSpiritual/anklets/crystal-pencils" },
-        { label: "Crystal Box", slug: "crystalsAndSpiritual/anklets/crystal-box" },
-        { label: "Crystal Idols", slug: "crystalsAndSpiritual/anklets/crystal-idols" },
-        { label: "Pyrite Dust Frames", slug: "crystalsAndSpiritual/anklets/pyrite-dust-frames" },
-        {
-          label: "Crystal Seven Chakra Healing Frames",
-          slug: "crystalsAndSpiritual/anklets/seven-chakra-frames",
-        },
-        { label: "Crystal Strings", slug: "crystalsAndSpiritual/anklets/crystal-strings" },
-        { label: "Crystal Animals", slug: "crystalsAndSpiritual/anklets/crystal-animals" },
-      ],
-    },
+    { label: "Anklets", slug: "crystalsAndSpiritual/anklets" },
+    { label: "Crystal Clocks", slug: "crystalsAndSpiritual/crystal-clocks" },
+    { label: "Crystal Pyramid", slug: "crystalsAndSpiritual/crystal-pyramid" },
+    { label: "Crystal Pencils", slug: "crystalsAndSpiritual/crystal-pencils" },
+    { label: "Crystal Box", slug: "crystalsAndSpiritual/crystal-box" },
+    { label: "Crystal Idols", slug: "crystalsAndSpiritual/crystal-idols" },
+    { label: "Pyrite Dust Frames", slug: "crystalsAndSpiritual/pyrite-dust-frames" },
+    { label: "Crystal Seven Chakra Healing Frames", slug: "crystalsAndSpiritual/seven-chakra-frames" },
+    { label: "Crystal Strings", slug: "crystalsAndSpiritual/crystal-strings" },
+    { label: "Crystal Animals", slug: "crystalsAndSpiritual/crystal-animals" },
     { label: "Yantras", slug: "crystalsAndSpiritual/yantras" },
     { label: "Thakur Ji Dresses", slug: "crystalsAndSpiritual/thakur-ji-dresses" },
     { label: "Rudraksh", slug: "crystalsAndSpiritual/rudraksh" },
@@ -154,28 +146,28 @@ export default function Navbar() {
 
           {/* ---------------- DESKTOP NAV ---------------- */}
           <div className="hidden lg:flex items-center gap-5 text-black">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               onClick={(e) => handleNavClick(e, "Home")}
             >
               Home
             </Link>
-           <Link href="/about">About</Link>
+            <Link href="/about">About</Link>
             <Link href="/shop">Shop</Link>
             <Link href="/collections">Collections</Link>
 
             {/* Creative - HOVER with container */}
-            <div 
+            <div
               className="relative"
               onMouseEnter={() => setDesktopCreativeOpen(true)}
-            
+
             >
               <button className="flex items-center gap-1">
                 Creative & Handcrafted <ChevronDown size={16} />
               </button>
 
               {desktopCreativeOpen && (
-                <div className="absolute top-full mt-3 left-0 bg-white border rounded shadow-xl min-w-[260px] z-50"   onMouseLeave={() => setDesktopCreativeOpen(false)}>
+                <div className="absolute top-full mt-3 left-0 bg-white border rounded shadow-xl min-w-[260px] z-50" onMouseLeave={() => setDesktopCreativeOpen(false)}>
                   {creativeCategories.map((cat) => (
                     <div key={cat.slug} className="group relative">
                       <Link
@@ -206,7 +198,7 @@ export default function Navbar() {
             </div>
 
             {/* Crystals - HOVER with container */}
-            <div 
+            <div
               className="relative"
               onMouseEnter={() => setDesktopCrystalsOpen(true)}
             >
@@ -215,9 +207,9 @@ export default function Navbar() {
               </button>
 
               {desktopCrystalsOpen && (
-                <div className="absolute top-full mt-3 left-0 bg-white border rounded shadow-xl min-w-[320px] z-50" 
-              onMouseLeave={() => setDesktopCrystalsOpen(false)}
-                
+                <div className="absolute top-full mt-3 left-0 bg-white border rounded shadow-xl min-w-[320px] z-50"
+                  onMouseLeave={() => setDesktopCrystalsOpen(false)}
+
                 >
                   {crystalsCategories.map((cat) => (
                     <div key={cat.slug} className="group relative">
@@ -230,8 +222,8 @@ export default function Navbar() {
                       </Link>
 
                       {cat.submenu && (
-                        <div className="hidden group-hover:block absolute left-full top-0 ml-1 bg-white border rounded shadow-xl min-w-[280px] max-h-[400px] overflow-y-auto z-50" 
-                        
+                        <div className="hidden group-hover:block absolute left-full top-0 ml-1 bg-white border rounded shadow-xl min-w-[280px] max-h-[400px] overflow-y-auto z-50"
+
                         >
                           {cat.submenu.map((sub) => (
                             <Link
@@ -251,7 +243,7 @@ export default function Navbar() {
             </div>
 
             {/* Remedies - HOVER with container */}
-            <div 
+            <div
               className="relative"
               onMouseEnter={() => setDesktopRemediesOpen(true)}
             >
@@ -261,8 +253,8 @@ export default function Navbar() {
 
               {desktopRemediesOpen && (
                 <div className="absolute top-full mt-3 left-0 bg-white border rounded shadow-xl min-w-[220px] max-h-[500px] overflow-y-auto z-50"
-              onMouseLeave={() => setDesktopRemediesOpen(false)}
-                
+                  onMouseLeave={() => setDesktopRemediesOpen(false)}
+
                 >
                   {remediesCategories.map((item) => (
                     <Link
@@ -282,8 +274,8 @@ export default function Navbar() {
 
           {/* ---------------- RIGHT ICONS ---------------- */}
           <div className="flex items-center gap-4 relative">
-            <Search 
-              className="w-6 h-6 text-black cursor-pointer" 
+            <Search
+              className="w-6 h-6 text-black cursor-pointer"
               onClick={handleSearchClick}
             />
 
@@ -330,8 +322,8 @@ export default function Navbar() {
               >
                 Home
               </Link>
-           <Link href="/about">About</Link>
-              
+              <Link href="/about">About</Link>
+
               <Link
                 href="/shop"
                 className="block py-2 text-black hover:text-[#e6cfa7]"
@@ -356,9 +348,8 @@ export default function Navbar() {
                   <span>Creative & Handcrafted</span>
                   <ChevronDown
                     size={16}
-                    className={`transition-transform ${
-                      mobileCreativeOpen ? "rotate-180" : ""
-                    }`}
+                    className={`transition-transform ${mobileCreativeOpen ? "rotate-180" : ""
+                      }`}
                   />
                 </button>
                 {mobileCreativeOpen && (
@@ -374,9 +365,8 @@ export default function Navbar() {
                               <span>{cat.label}</span>
                               <ChevronDown
                                 size={14}
-                                className={`transition-transform ${
-                                  mobileCoirOpen ? "rotate-180" : ""
-                                }`}
+                                className={`transition-transform ${mobileCoirOpen ? "rotate-180" : ""
+                                  }`}
                               />
                             </button>
                             {mobileCoirOpen && (
@@ -418,9 +408,8 @@ export default function Navbar() {
                   <span>Crystals & Spiritual</span>
                   <ChevronDown
                     size={16}
-                    className={`transition-transform ${
-                      mobileCrystalsOpen ? "rotate-180" : ""
-                    }`}
+                    className={`transition-transform ${mobileCrystalsOpen ? "rotate-180" : ""
+                      }`}
                   />
                 </button>
                 {mobileCrystalsOpen && (
@@ -439,29 +428,28 @@ export default function Navbar() {
                               <span>{cat.label}</span>
                               <ChevronDown
                                 size={14}
-                                className={`transition-transform ${
-                                  (cat.label === "Anklets" && mobileAnkletsOpen) ||
+                                className={`transition-transform ${(cat.label === "Anklets" && mobileAnkletsOpen) ||
                                   (cat.label === "Sage" && mobileSageOpen)
-                                    ? "rotate-180"
-                                    : ""
-                                }`}
+                                  ? "rotate-180"
+                                  : ""
+                                  }`}
                               />
                             </button>
                             {((cat.label === "Anklets" && mobileAnkletsOpen) ||
                               (cat.label === "Sage" && mobileSageOpen)) && (
-                              <div className="ml-4 mt-1 space-y-1">
-                                {cat.submenu.map((sub) => (
-                                  <Link
-                                    key={sub.slug}
-                                    href={`/${sub.slug}`}
-                                    className="block py-1 text-xs text-black hover:text-[#e6cfa7]"
-                                    onClick={() => setMenuOpen(false)}
-                                  >
-                                    {sub.label}
-                                  </Link>
-                                ))}
-                              </div>
-                            )}
+                                <div className="ml-4 mt-1 space-y-1">
+                                  {cat.submenu.map((sub) => (
+                                    <Link
+                                      key={sub.slug}
+                                      href={`/${sub.slug}`}
+                                      className="block py-1 text-xs text-black hover:text-[#e6cfa7]"
+                                      onClick={() => setMenuOpen(false)}
+                                    >
+                                      {sub.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
                           </>
                         ) : (
                           <Link
@@ -487,9 +475,8 @@ export default function Navbar() {
                   <span>Remedies</span>
                   <ChevronDown
                     size={16}
-                    className={`transition-transform ${
-                      mobileRemediesOpen ? "rotate-180" : ""
-                    }`}
+                    className={`transition-transform ${mobileRemediesOpen ? "rotate-180" : ""
+                      }`}
                   />
                 </button>
                 {mobileRemediesOpen && (
@@ -508,7 +495,7 @@ export default function Navbar() {
                 )}
               </div>
 
-              
+
               <Link
                 href="/about"
                 className="block py-2 text-black hover:text-[#e6cfa7]"
