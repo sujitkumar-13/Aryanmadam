@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { MessageCircle } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 export default function FloatingWhatsApp() {
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      
+
       {/* Ripple Effect */}
       <span className="absolute inset-0 rounded-full bg-green-500 opacity-30 animate-ping" />
       <span className="absolute inset-0 rounded-full bg-green-500 opacity-20 animate-[ping_2.5s_infinite]" />
@@ -41,7 +41,7 @@ export default function FloatingWhatsApp() {
           scale: 0.95,
         }}
       >
-        <MessageCircle className="w-7 h-7" />
+        <FaWhatsapp className="w-8 h-8" />
       </motion.a>
     </div>
   );

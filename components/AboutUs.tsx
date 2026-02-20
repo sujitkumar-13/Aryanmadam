@@ -2,13 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   ShieldCheck,
   Leaf,
   Headphones,
   Lightbulb,
-  Heart,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -450,9 +448,6 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
-
-
-
     </div>
   );
 }
