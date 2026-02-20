@@ -163,7 +163,7 @@ export default function Navbar() {
               onMouseLeave={() => setDesktopCreativeOpen(false)}
             >
               <button className="flex items-center gap-1 py-5 hover:text-[#e6cfa7] transition-colors font-medium">
-                Creative & Handcrafted <ChevronDown size={16} />
+                Creative & Handcrafted <ChevronDown size={16} className="transition-transform duration-300 group-hover:rotate-180" />
               </button>
 
               {desktopCreativeOpen && (
@@ -208,7 +208,7 @@ export default function Navbar() {
               onMouseLeave={() => setDesktopCrystalsOpen(false)}
             >
               <button className="flex items-center gap-1 py-5 hover:text-[#e6cfa7] transition-colors font-medium">
-                Crystals & Spiritual <ChevronDown size={16} />
+                Crystals & Spiritual <ChevronDown size={16} className="transition-transform duration-300 group-hover:rotate-180" />
               </button>
 
               {desktopCrystalsOpen && (
@@ -311,7 +311,7 @@ export default function Navbar() {
               onMouseLeave={() => setDesktopRemediesOpen(false)}
             >
               <button className="flex items-center gap-1 py-5 hover:text-[#e6cfa7] transition-colors font-medium">
-                Remedies <ChevronDown size={16} />
+                Remedies <ChevronDown size={16} className="transition-transform duration-300 group-hover:rotate-180" />
               </button>
 
               {desktopRemediesOpen && (
