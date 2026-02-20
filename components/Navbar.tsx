@@ -156,7 +156,7 @@ export default function Navbar() {
             <Link href="/shop">Shop</Link>
             <Link href="/collections">Collections</Link>
 
-            {/* Creative - Enhanced Dropdown */}
+            {/* Creative - Meesho Style Mega Menu */}
             <div
               className="relative group"
               onMouseEnter={() => setDesktopCreativeOpen(true)}
@@ -167,35 +167,90 @@ export default function Navbar() {
               </button>
 
               {desktopCreativeOpen && (
-                <div className="absolute top-full left-0 bg-white border rounded-xl shadow-2xl min-w-[280px] z-50 animate-in fade-in slide-in-from-top-1 duration-200">
-                  <div className="py-2">
-                    {creativeCategories.map((cat) => (
-                      <div key={cat.slug} className="group/item relative">
-                        <Link
-                          href={`/${cat.slug}`}
-                          className="flex justify-between items-center px-6 py-3 text-sm text-gray-700 hover:bg-[#e6cfa7]/10 hover:text-black transition-colors"
-                        >
-                          <span>{cat.label}</span>
-                          {cat.submenu && <ChevronRight size={14} className="text-gray-400" />}
-                        </Link>
-
-                        {cat.submenu && (
-                          <div className="hidden group-hover/item:block absolute left-full top-0 ml-0 bg-white border rounded-xl shadow-2xl min-w-[220px] z-50 overflow-hidden animate-in fade-in slide-in-from-left-1 duration-200">
-                            <div className="py-2">
-                              {cat.submenu.map((sub) => (
-                                <Link
-                                  key={sub.slug}
-                                  href={`/${sub.slug}`}
-                                  className="block px-6 py-2 text-sm text-gray-600 hover:bg-[#e6cfa7]/10 hover:text-black transition-colors"
-                                >
-                                  {sub.label}
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                        )}
+                <div className="fixed left-0 right-0 top-[81px] bg-white border-b shadow-2xl z-50 animate-in fade-in slide-in-from-top-2 duration-300">
+                  <div className="max-w-7xl mx-auto px-6 py-10">
+                    <div className="grid grid-cols-4 gap-12">
+                      {/* Column 1: Arts & Crafts */}
+                      <div>
+                        <h3 className="text-black font-bold text-sm mb-6 border-b pb-2 border-gray-100">Creative Arts</h3>
+                        <div className="space-y-3">
+                          {creativeCategories.filter(c =>
+                            ["Art & Craft", "Jutt Item"].includes(c.label)
+                          ).map((cat) => (
+                            <Link
+                              key={cat.slug}
+                              href={`/${cat.slug}`}
+                              className="block text-sm text-gray-500 hover:text-[#e6cfa7] transition-all"
+                            >
+                              {cat.label}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
-                    ))}
+
+                      {/* Column 2: Special Items */}
+                      <div>
+                        <h3 className="text-black font-bold text-sm mb-6 border-b pb-2 border-gray-100">Special Collections</h3>
+                        <div className="space-y-3">
+                          {creativeCategories.filter(c =>
+                            ["Handmade Occasion-Special Items"].includes(c.label)
+                          ).map((cat) => (
+                            <Link
+                              key={cat.slug}
+                              href={`/${cat.slug}`}
+                              className="block text-sm text-gray-500 hover:text-[#e6cfa7] transition-all"
+                            >
+                              {cat.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Column 3: Eco Fibers */}
+                      <div>
+                        <h3 className="text-black font-bold text-sm mb-6 border-b pb-2 border-gray-100">Eco & Fibers</h3>
+                        <div className="space-y-3">
+                          {creativeCategories.filter(c =>
+                            ["Coir Products"].includes(c.label)
+                          ).map((cat) => (
+                            <div key={cat.slug}>
+                              <Link
+                                href={`/${cat.slug}`}
+                                className="block text-sm text-gray-500 hover:text-[#e6cfa7] transition-all"
+                              >
+                                {cat.label}
+                              </Link>
+                              {cat.submenu && (
+                                <div className="ml-3 mt-1 space-y-1">
+                                  {cat.submenu.map(sub => (
+                                    <Link key={sub.slug} href={`/${sub.slug}`} className="block text-xs text-gray-400 hover:text-[#e6cfa7]">
+                                      {sub.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Column 4: Handicraft Promo */}
+                      <div className="flex flex-col gap-4">
+                        <div className="bg-[#f1f8fc] p-6 rounded-2xl relative overflow-hidden group/promo">
+                          <div className="relative z-10">
+                            <h4 className="font-bold text-gray-900 mb-2">Artisan Crafts</h4>
+                            <p className="text-xs text-gray-600 mb-4 leading-relaxed">Unique handcrafted pieces made with love and precision.</p>
+                            <Link href="/shop" className="inline-block bg-black text-white px-5 py-2 text-xs font-semibold rounded-full hover:bg-gray-800 transition-colors">
+                              View Gallery
+                            </Link>
+                          </div>
+                          <div className="absolute -right-4 -bottom-4 opacity-10 group-hover/promo:scale-110 transition-transform">
+                            <ShoppingCart size={120} />
+                          </div>
+                        </div>
+                       
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
