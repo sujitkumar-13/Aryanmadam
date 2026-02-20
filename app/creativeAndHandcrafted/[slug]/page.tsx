@@ -59,7 +59,7 @@ export default function CreativeCategoryPage() {
     <>
       <Navbar />
 
-      <section className="min-h-screen px-6 py-24 bg-[#fdfaf6]">
+      <section className="min-h-screen px-6 py-20 bg-[#fdfaf6]">
         <div className="max-w-7xl mx-auto">
           {/* HEADER */}
           <div className="text-center mb-16">

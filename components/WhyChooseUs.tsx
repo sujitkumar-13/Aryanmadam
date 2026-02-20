@@ -48,7 +48,7 @@ export default function WhyChooseUs() {
   }, []);
 
   return (
-    <section className="relative min-h-screen py-28 px-6 font-serif overflow-hidden bg-[#1A4A5E] text-white">
+    <section className="relative py-28 px-6 font-serif overflow-hidden bg-[#1A4A5E] text-white">
       <div className="relative mx-auto max-w-7xl">
 
         {/* Heading */}
