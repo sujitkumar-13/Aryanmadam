@@ -89,7 +89,7 @@ export default function ProductsPage() {
         {/* HEADER */}
         <div className="mb-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-[rgb(44_95_124)]">
-            Shop All Products
+            Shop For Gifting
           </h1>
 
           {query && (
