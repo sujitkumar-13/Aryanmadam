@@ -125,9 +125,9 @@ const Footer: FC = () => {
         data-animate="card"
         className="relative border-t border-black/20"
       >
-        <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between text-sm text-black">
+        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between text-base text-black font-medium gap-4">
           <p>© 2026 Arya Madam Craft Supplies</p>
-          <Link href="/privacy-policy">Privacy Policy</Link>
+          <Link href="/privacyPolicy">Privacy Policy</Link>
         </div>
       </div>
 

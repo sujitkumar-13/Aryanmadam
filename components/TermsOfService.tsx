@@ -44,7 +44,7 @@ const TermsPolicyPage = () => {
                          border border-[#e6cfa7]
                          rounded-full
                          text-[rgb(44_95_124)]
-                         tracking-widest uppercase text-xs"
+                         tracking-widest uppercase text-sm"
             >
               Terms & Policy
             </span>
@@ -57,7 +57,7 @@ const TermsPolicyPage = () => {
               ───── ✦ ─────
             </div>
 
-            <p className="mx-auto max-w-3xl text-lg leading-relaxed opacity-80">
+            <p className="mx-auto max-w-3xl text-xl leading-relaxed opacity-90">
               Please read these terms carefully before using our website
               and purchasing our products.
             </p>
@@ -109,7 +109,7 @@ const TermsPolicyPage = () => {
                   {item.title}
                 </h2>
 
-                <p className="leading-relaxed opacity-80">
+                <p className="text-lg leading-relaxed opacity-90">
                   {item.text}
                 </p>
               </div>
@@ -124,7 +124,7 @@ const TermsPolicyPage = () => {
               Questions About Our Terms?
             </h2>
 
-            <p className="mb-10 text-lg opacity-80">
+            <p className="mb-10 text-xl opacity-90">
               Contact us if you need clarification.
             </p>
 
