@@ -1,0 +1,239 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // Remove the url line - it goes in prisma.config.ts now
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  orders        Order[]
+  accounts      Account[]
+  sessions      Session[]
+
+  @@index([email])
+}
+
+// NextAuth Models
+model Account {
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ✅ SHOP PRODUCTS MODEL
+model Product {
+  id          String        @id @default(uuid())
+  title       String
+  details     String?
+  description String
+  price       Int
+  oldPrice    Int?
+  exclusive   Int?
+  stock       Int           @default(0)
+  images      String[]
+  video       String?
+  colour      String[]
+  insideBox   String[]
+  rating      Float         @default(0)
+  reviews     Int           @default(0)
+  badge       String?
+  sku         String        @unique
+  category    String
+  stone       String?
+  status      ProductStatus @default(ACTIVE)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  orderItems OrderItem[]
+
+  @@index([category])
+  @@index([status])
+  @@index([createdAt])
+  @@index([sku])
+}
+
+// ✅ REMEDY PRODUCTS MODEL (CORRECTED)
+model Remedy {
+  id          String        @id @default(uuid())
+  title       String
+  description String
+  category    String
+  ailment     String        // ✅ REQUIRED FIELD
+  price       Int
+  oldPrice    Int?
+  stock       Int           @default(0)
+  images      String[]
+  video       String?
+  status      ProductStatus @default(ACTIVE)
+  rating      Float         @default(0)
+  reviews     Int           @default(0)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([category])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// Enhanced Order model
+model Order {
+  id              String        @id @default(uuid())
+  userId          String
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Order details
+  orderNumber     String        @unique @default(cuid())
+  total           Int           @default(0)
+  subtotal        Int           @default(0)
+  tax             Int           @default(0)
+  shipping        Int           @default(0)
+  discount        Int           @default(0)
+  status          OrderStatus   @default(PENDING)
+  
+  // Shipping details
+  shippingName    String
+  shippingEmail   String
+  shippingPhone   String
+  shippingAddress String
+  shippingCity    String
+  shippingState   String
+  shippingZip     String
+  shippingCountry String        @default("India")
+  
+  // Payment details
+  paymentMethod   String?
+  paymentStatus   PaymentStatus @default(PENDING)
+  paidAt          DateTime?
+  
+  // Tracking
+  trackingNumber  String?
+  shippedAt       DateTime?
+  deliveredAt     DateTime?
+  
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  orderItems      OrderItem[]
+
+  @@index([userId])
+  @@index([orderNumber])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// Order Items
+model OrderItem {
+  id        String   @id @default(uuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  
+  quantity  Int
+  price     Int
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Newsletter {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}
+
+model Contact {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@index([createdAt])
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum ProductStatus {
+  ACTIVE
+  DRAFT
+  ARCHIVED
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
