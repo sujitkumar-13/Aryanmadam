@@ -248,7 +248,7 @@ export default function Navbar() {
                             <ShoppingCart size={120} />
                           </div>
                         </div>
-                       
+
                       </div>
                     </div>
                   </div>
@@ -440,7 +440,7 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link href="/experts">Contact as</Link>
+            <Link href="/experts">Contact Us</Link>
           </div>
 
           {/* ---------------- RIGHT ICONS ---------------- */}
@@ -493,7 +493,13 @@ export default function Navbar() {
               >
                 Home
               </Link>
-              <Link href="/about">About</Link>
+              <Link
+                href="/about"
+                className="block py-2 text-black hover:text-[#e6cfa7]"
+                onClick={() => setMenuOpen(false)}
+              >
+                About
+              </Link>
 
               <Link
                 href="/shop"
@@ -667,19 +673,13 @@ export default function Navbar() {
               </div>
 
 
-              <Link
-                href="/about"
-                className="block py-2 text-black hover:text-[#e6cfa7]"
-                onClick={() => setMenuOpen(false)}
-              >
-                About
-              </Link>
+
               <Link
                 href="/experts"
                 className="block py-2 text-black hover:text-[#e6cfa7]"
                 onClick={() => setMenuOpen(false)}
               >
-                Contact as
+                Contact Us
               </Link>
             </div>
           </div>
