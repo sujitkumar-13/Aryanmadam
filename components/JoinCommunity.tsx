@@ -18,7 +18,7 @@ export default function JoinCommunity() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
+
     // Reset messages
     setMessage("");
     setMessageType("");
@@ -40,7 +40,7 @@ export default function JoinCommunity() {
         setMessage(data.message || "Successfully subscribed!");
         setEmail(""); // Clear input on success
         setIsSubscribed(true); // Mark as subscribed
-        
+
         // Hide success message after 5 seconds
         setTimeout(() => {
           setMessage("");
@@ -49,7 +49,7 @@ export default function JoinCommunity() {
       } else {
         setMessageType("error");
         setMessage(data.error || "Failed to subscribe. Please try again.");
-        
+
         // Hide error message after 5 seconds
         setTimeout(() => {
           setMessage("");
@@ -60,7 +60,7 @@ export default function JoinCommunity() {
       console.error("Newsletter subscription error:", error);
       setMessageType("error");
       setMessage("Something went wrong. Please try again later.");
-      
+
       // Hide error message after 5 seconds
       setTimeout(() => {
         setMessage("");
@@ -73,7 +73,7 @@ export default function JoinCommunity() {
 
   const handleShopClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    
+
     if (pathname === '/shop') {
       // Already on shop page, scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -84,11 +84,11 @@ export default function JoinCommunity() {
   };
 
   return (
-    <section className="pt-8 pb-28 px-6 bg-gray-50">
+    <section className="pt-8 pb-28 px-4 sm:px-6 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <ThreeDCard>
           <motion.div
-            className="max-w-4xl mx-auto text-center bg-[rgb(44_95_124)] p-16 rounded-3xl border border-[#e6cfa7]/40 relative overflow-hidden"
+            className="max-w-4xl mx-auto text-center bg-[rgb(44_95_124)] p-8 md:p-12 lg:p-16 rounded-3xl border border-[#e6cfa7]/40 relative overflow-hidden"
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: false }}
@@ -109,12 +109,12 @@ export default function JoinCommunity() {
             </motion.div>
 
             {/* Heading */}
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-white">
               Join Our Creative Community
             </h2>
 
             {/* Description */}
-            <p className="text-white/90 mb-10 text-lg">
+            <p className="text-white/90 mb-8 md:mb-10 text-base md:text-lg">
               Subscribe to get exclusive offers, craft tips, and creative inspiration!
             </p>
 
@@ -135,7 +135,7 @@ export default function JoinCommunity() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       disabled={loading}
-                      className="px-6 py-4 rounded-lg border-2 border-white/20 flex-1 max-w-md
+                      className="px-4 py-3 sm:px-6 sm:py-4 rounded-lg border-2 border-white/20 flex-1 w-full sm:max-w-md
                       bg-white/10 backdrop-blur-sm text-white placeholder:text-white/60
                       focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent
                       disabled:opacity-50 disabled:cursor-not-allowed transition-all"
@@ -144,10 +144,10 @@ export default function JoinCommunity() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="px-8 py-4 bg-[#E76F51] text-white rounded-lg font-semibold
+                      className="px-6 py-3 sm:px-8 sm:py-4 bg-[#E76F51] text-white rounded-lg font-semibold
                       hover:bg-[#d65a3d] transition-all inline-flex items-center justify-center
-                      disabled:opacity-50 disabled:cursor-not-allowed min-w-[160px]
-                      shadow-lg hover:shadow-xl transform hover:scale-105"
+                      disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto sm:min-w-[160px]
+                      shadow-lg hover:shadow-xl transform sm:hover:scale-105 active:scale-95"
                     >
                       {loading ? (
                         <>
@@ -186,7 +186,7 @@ export default function JoinCommunity() {
                     >
                       <CheckCircle className="text-green-400" size={40} />
                     </motion.div>
-                    
+
                     <h3 className="text-2xl font-bold text-white mb-2">
                       🎉 Welcome to Our Community!
                     </h3>
@@ -199,9 +199,9 @@ export default function JoinCommunity() {
                   <a
                     href="/shop"
                     onClick={handleShopClick}
-                    className="inline-flex items-center px-8 py-4 bg-[#E76F51] text-white rounded-lg font-semibold
+                    className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 bg-[#E76F51] text-white rounded-lg font-semibold
                     hover:bg-[#d65a3d] transition-all shadow-lg hover:shadow-xl 
-                    transform hover:scale-105 gap-2"
+                    transform sm:hover:scale-105 active:scale-95 gap-2 w-full sm:w-auto"
                   >
                     <ShoppingBag size={20} />
                     Start Shopping

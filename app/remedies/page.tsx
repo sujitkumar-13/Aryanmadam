@@ -6,15 +6,15 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion, type Variants } from "framer-motion";
 import ThreeDCard from "@/components/ThreeDCard";
-import {  animate, useMotionValue, useInView, AnimatePresence } from "framer-motion";
+import { animate, useMotionValue, useInView, AnimatePresence } from "framer-motion";
 
 import {
   Coins,
   Heart,
   Users,
   Shield,
-   Mail,
-   ShoppingBag,
+  Mail,
+  ShoppingBag,
   Sparkles,
   GraduationCap,
   Crown,
@@ -253,52 +253,52 @@ export default function RemediesPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-28 px-6 bg-gray-50">
-  <div className="max-w-7xl mx-auto">
-    <ThreeDCard>
-      <motion.div
-        className="max-w-4xl mx-auto text-center bg-[rgb(44_95_124)] p-16 rounded-3xl border border-[#e6cfa7]/40"
-        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: false }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <Heart className="mx-auto mb-6 text-white" size={48} />
-        <h2 className="text-3xl font-bold mb-6 text-white">
-          Join Our Creative Community
-        </h2>
-        <p className="text-white mb-10">
-          Be part of a growing community of creators.
-        </p>
+        <section className="py-16 md:py-28 px-4 sm:px-6 bg-gray-50 overflow-hidden">
+          <div className="max-w-7xl mx-auto">
+            <ThreeDCard>
+              <motion.div
+                className="max-w-4xl mx-auto text-center bg-[rgb(44_95_124)] p-8 md:p-12 lg:p-16 rounded-3xl border border-[#e6cfa7]/40 relative overflow-hidden"
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                <Heart className="mx-auto mb-6 text-white" size={48} />
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-white">
+                  Join Our Creative Community
+                </h2>
+                <p className="text-white text-sm sm:text-base mb-8 sm:mb-10">
+                  Be part of a growing community of creators.
+                </p>
 
-        {/* Email Subscription Form */}
-        <form className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#e76f51] flex-1"
-            required
-          />
-          <button
-            type="submit"
-            className="px-6 py-3 bg-[#E76F51] text-white rounded-lg hover:bg-[#d65a3d] transition"
-          >
-            <Mail className="inline mr-2" size={20} /> Subscribe
-          </button>
-        </form>
+                {/* Email Subscription Form */}
+                <form className="flex flex-col sm:flex-row justify-center gap-4 mb-6 w-full max-w-md mx-auto px-2 sm:px-0">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#e76f51] w-full sm:flex-1"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="px-6 py-3 bg-[#E76F51] text-white rounded-lg hover:bg-[#d65a3d] transition w-full sm:w-auto flex items-center justify-center"
+                  >
+                    <Mail className="inline mr-2" size={20} /> Subscribe
+                  </button>
+                </form>
 
-        <div className="flex flex-col sm:flex-row justify-center gap-6">
-          <Link
-            href="/shop"
-            className="px-6 py-3 bg-[#E76F51] text-white rounded-lg inline-flex items-center justify-center hover:bg-[#d65a3d] transition"
-          >
-            <ShoppingBag className="inline mr-2" size={20} /> Start Shopping
-          </Link>
-        </div>
-      </motion.div>
-    </ThreeDCard>
-  </div>
-</section>
+                <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 w-full max-w-md mx-auto px-2 sm:px-0">
+                  <Link
+                    href="/shop"
+                    className="px-6 py-3 bg-[#E76F51] text-white rounded-lg inline-flex items-center justify-center hover:bg-[#d65a3d] transition w-full sm:w-auto"
+                  >
+                    <ShoppingBag className="inline mr-2" size={20} /> Start Shopping
+                  </Link>
+                </div>
+              </motion.div>
+            </ThreeDCard>
+          </div>
+        </section>
 
       </div>
 

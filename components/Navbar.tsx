@@ -415,7 +415,7 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link href="/experts">Contact Us</Link>
+            <Link href="/experts">Talk to Us</Link>
           </div>
 
           {/* ---------------- RIGHT ICONS ---------------- */}
@@ -587,7 +587,7 @@ export default function Navbar() {
                 className="block py-2 text-black hover:text-[#e6cfa7]"
                 onClick={() => setMenuOpen(false)}
               >
-                Contact Us
+                Talk to Us
               </Link>
             </div>
           </div>
