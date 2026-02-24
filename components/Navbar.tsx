@@ -80,13 +80,8 @@ export default function Navbar() {
     { label: "Art & Craft", slug: "creativeAndHandcrafted/art-craft" },
     { label: "Handmade Occasion-Special Items", slug: "creativeAndHandcrafted/handmade-special" },
     { label: "Jutt Item", slug: "creativeAndHandcrafted/jutt-item" },
-    {
-      label: "Coir Products",
-      slug: "creativeAndHandcrafted/coir-products",
-      submenu: [
-        { label: "Dry Flowers", slug: "creativeAndHandcrafted/coir-products/dry-flowers" },
-      ],
-    },
+    { label: "Coir Products", slug: "creativeAndHandcrafted/coir-products" },
+    { label: "Dry Flowers", slug: "creativeAndHandcrafted/dry-flowers" },
   ];
 
   const crystalsCategories = [
@@ -111,11 +106,9 @@ export default function Navbar() {
     { label: "Thakur Ji Dresses", slug: "crystalsAndSpiritual/thakur-ji-dresses" },
     { label: "Rudraksh", slug: "crystalsAndSpiritual/rudraksh" },
     { label: "Pooja Items", slug: "crystalsAndSpiritual/pooja-items" },
-    {
-      label: "Sage",
-      slug: "crystalsAndSpiritual/sage",
-      submenu: [{ label: "God Idols", slug: "crystalsAndSpiritual/sage/god-idols" }],
-    },
+    { label: "Sage", slug: "crystalsAndSpiritual/sage" },
+    { label: "God Idols", slug: "crystalsAndSpiritual/god-idols" }
+
   ];
 
   const remediesCategories = [
@@ -211,7 +204,7 @@ export default function Navbar() {
                         <h3 className="text-black font-bold text-sm mb-6 border-b pb-2 border-gray-100">Eco & Fibers</h3>
                         <div className="space-y-3">
                           {creativeCategories.filter(c =>
-                            ["Coir Products"].includes(c.label)
+                            ["Coir Products", "Dry Flowers"].includes(c.label)
                           ).map((cat) => (
                             <div key={cat.slug}>
                               <Link
@@ -220,15 +213,6 @@ export default function Navbar() {
                               >
                                 {cat.label}
                               </Link>
-                              {cat.submenu && (
-                                <div className="ml-3 mt-1 space-y-1">
-                                  {cat.submenu.map(sub => (
-                                    <Link key={sub.slug} href={`/${sub.slug}`} className="block text-xs text-gray-400 hover:text-[#e6cfa7]">
-                                      {sub.label}
-                                    </Link>
-                                  ))}
-                                </div>
-                              )}
                             </div>
                           ))}
                         </div>
@@ -311,7 +295,7 @@ export default function Navbar() {
                         <h3 className="text-black font-bold text-sm mb-6 border-b pb-2 border-gray-100">Spiritual & Pooja</h3>
                         <div className="space-y-3">
                           {crystalsCategories.filter(c =>
-                            ["Yantras", "Thakur Ji Dresses", "Rudraksh", "Pooja Items", "Sage"].includes(c.label)
+                            ["Yantras", "Thakur Ji Dresses", "Rudraksh", "Pooja Items", "Sage", "God Idols"].includes(c.label)
                           ).map((cat) => (
                             <div key={cat.slug}>
                               <Link
@@ -320,15 +304,6 @@ export default function Navbar() {
                               >
                                 {cat.label}
                               </Link>
-                              {cat.submenu && (
-                                <div className="ml-3 mt-1 space-y-1">
-                                  {cat.submenu.map(sub => (
-                                    <Link key={sub.slug} href={`/${sub.slug}`} className="block text-xs text-gray-400 hover:text-[#e6cfa7]">
-                                      {sub.label}
-                                    </Link>
-                                  ))}
-                                </div>
-                              )}
                             </div>
                           ))}
                         </div>
@@ -533,43 +508,13 @@ export default function Navbar() {
                   <div className="ml-4 mt-2 space-y-2">
                     {creativeCategories.map((cat) => (
                       <div key={cat.slug}>
-                        {cat.submenu ? (
-                          <>
-                            <button
-                              onClick={() => setMobileCoirOpen((p) => !p)}
-                              className="w-full flex items-center justify-between py-1 text-sm text-black"
-                            >
-                              <span>{cat.label}</span>
-                              <ChevronDown
-                                size={14}
-                                className={`transition-transform ${mobileCoirOpen ? "rotate-180" : ""
-                                  }`}
-                              />
-                            </button>
-                            {mobileCoirOpen && (
-                              <div className="ml-4 mt-1 space-y-1">
-                                {cat.submenu.map((sub) => (
-                                  <Link
-                                    key={sub.slug}
-                                    href={`/${sub.slug}`}
-                                    className="block py-1 text-xs text-black hover:text-[#e6cfa7]"
-                                    onClick={() => setMenuOpen(false)}
-                                  >
-                                    {sub.label}
-                                  </Link>
-                                ))}
-                              </div>
-                            )}
-                          </>
-                        ) : (
-                          <Link
-                            href={`/${cat.slug}`}
-                            className="block py-1 text-sm text-black hover:text-[#e6cfa7]"
-                            onClick={() => setMenuOpen(false)}
-                          >
-                            {cat.label}
-                          </Link>
-                        )}
+                        <Link
+                          href={`/${cat.slug}`}
+                          className="block py-1 text-sm text-black hover:text-[#e6cfa7]"
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          {cat.label}
+                        </Link>
                       </div>
                     ))}
                   </div>
@@ -593,50 +538,13 @@ export default function Navbar() {
                   <div className="ml-4 mt-2 space-y-2">
                     {crystalsCategories.map((cat) => (
                       <div key={cat.slug}>
-                        {cat.submenu ? (
-                          <>
-                            <button
-                              onClick={() => {
-                                if (cat.label === "Anklets") setMobileAnkletsOpen((p) => !p);
-                                if (cat.label === "Sage") setMobileSageOpen((p) => !p);
-                              }}
-                              className="w-full flex items-center justify-between py-1 text-sm text-black"
-                            >
-                              <span>{cat.label}</span>
-                              <ChevronDown
-                                size={14}
-                                className={`transition-transform ${(cat.label === "Anklets" && mobileAnkletsOpen) ||
-                                  (cat.label === "Sage" && mobileSageOpen)
-                                  ? "rotate-180"
-                                  : ""
-                                  }`}
-                              />
-                            </button>
-                            {((cat.label === "Anklets" && mobileAnkletsOpen) ||
-                              (cat.label === "Sage" && mobileSageOpen)) && (
-                                <div className="ml-4 mt-1 space-y-1">
-                                  {cat.submenu.map((sub) => (
-                                    <Link
-                                      key={sub.slug}
-                                      href={`/${sub.slug}`}
-                                      className="block py-1 text-xs text-black hover:text-[#e6cfa7]"
-                                      onClick={() => setMenuOpen(false)}
-                                    >
-                                      {sub.label}
-                                    </Link>
-                                  ))}
-                                </div>
-                              )}
-                          </>
-                        ) : (
-                          <Link
-                            href={`/${cat.slug}`}
-                            className="block py-1 text-sm text-black hover:text-[#e6cfa7]"
-                            onClick={() => setMenuOpen(false)}
-                          >
-                            {cat.label}
-                          </Link>
-                        )}
+                        <Link
+                          href={`/${cat.slug}`}
+                          className="block py-1 text-sm text-black hover:text-[#e6cfa7]"
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          {cat.label}
+                        </Link>
                       </div>
                     ))}
                   </div>

@@ -32,7 +32,7 @@ const Footer: FC = () => {
 
   return (
     <footer
-      className="relative font-serif text-black overflow-hidden bg-white"
+      className="relative font-serif text-black overflow-hidden bg-white border-t border-black/20"
     >
       {/* Main Footer */}
       <div
@@ -125,9 +125,16 @@ const Footer: FC = () => {
         data-animate="card"
         className="relative border-t border-black/20"
       >
-        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between text-base text-black font-medium gap-4">
-          <p>© 2026 Arya Madam Craft Supplies</p>
-          <Link href="/privacyPolicy">Privacy Policy</Link>
+        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between items-center text-sm sm:text-base text-black font-medium gap-4 relative">
+          <p className="sm:flex-1 text-center sm:text-left">
+            © 2026 Arya Madam Craft Supplies
+          </p>
+          <p className="text-center sm:absolute sm:left-1/2 sm:-translate-x-1/2 w-full sm:w-auto mt-2 sm:mt-0">
+            All rights are reserved with aryamadamcraftsupplies
+          </p>
+          <div className="sm:flex-1 flex justify-center sm:justify-end mt-2 sm:mt-0">
+            <Link href="/privacyPolicy" className="hover:underline">Privacy Policy</Link>
+          </div>
         </div>
       </div>
 
