@@ -79,7 +79,7 @@ const Footer: FC = () => {
               <li><Link href="/about#about">About Us</Link></li>
               <li><Link href="/career">Careers</Link></li>
               <li><Link href="/press">Press</Link></li>
-              <li><Link href="/contact#contact">Contact</Link></li>
+              <li><Link href="/experts">Talk to Us</Link></li>
             </ul>
           </div>
 
