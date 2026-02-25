@@ -89,40 +89,6 @@ const ReturnsExchangePage = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* CTA */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.8 }}
-          className="mt-32 text-center"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#2c5f7c] mb-6">
-            <TextReveal text="Need Help With a Return?" />
-          </h2>
-
-          <p className="mb-10 text-lg text-gray-600">
-            <TextReveal text="Our support team is here to assist you with returns and exchanges." />
-          </p>
-
-          <motion.button
-            initial={{ letterSpacing: '0.25em', opacity: 0 }}
-            whileInView={{ letterSpacing: '0em', opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="px-8 py-3
-                       border border-[#2c5f7c]
-                       text-[#2c5f7c]
-                       rounded-full
-                       tracking-wide
-                       hover:bg-[#2c5f7c]
-                       hover:text-white
-                       transition"
-          >
-            Contact Support
-          </motion.button>
-        </motion.div> */}
-
       </div>
     </section>
   );
