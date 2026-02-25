@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
-// 🔥 CHANGE THIS PASSWORD
-const ADMIN_PASSWORD = "admin123";
+// Fetch password from environment variables
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 export async function POST(req: NextRequest) {
   try {
