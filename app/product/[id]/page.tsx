@@ -39,7 +39,7 @@ export default function ProductPage() {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
-  
+
   const { addToCart, increaseQty, decreaseQty, items: cartItems } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
@@ -52,7 +52,7 @@ export default function ProductPage() {
       setLoading(true);
       try {
         const res = await fetch(`/api/products/${id}`);
-        
+
         if (!res.ok) {
           throw new Error('Product not found');
         }
@@ -77,7 +77,7 @@ export default function ProductPage() {
 
       try {
         const res = await fetch(`/api/products?category=${product.category}`);
-        
+
         if (res.ok) {
           const data = await res.json();
           const related = data
@@ -179,9 +179,8 @@ export default function ProductPage() {
                         key={i}
                         src={img}
                         onClick={() => setSelectedImage(i)}
-                        className={`w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg border-2 cursor-pointer hover:border-[#e6cfa7] transition flex-shrink-0 ${
-                          selectedImage === i ? 'border-[#e6cfa7]' : 'border-gray-200'
-                        }`}
+                        className={`w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg border-2 cursor-pointer hover:border-[#e6cfa7] transition flex-shrink-0 ${selectedImage === i ? 'border-[#e6cfa7]' : 'border-gray-200'
+                          }`}
                         alt={`${product.title} - view ${i + 1}`}
                       />
                     ))}
@@ -261,7 +260,7 @@ export default function ProductPage() {
                       <div
                         key={idx}
                         className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-gray-300 hover:border-[#e6cfa7] transition cursor-pointer"
-                        style={{ backgroundColor: color }}
+                        style={{ backgroundColor: color.replace(/\s+/g, '').toLowerCase() }}
                         title={color}
                       />
                     ))}
@@ -276,7 +275,7 @@ export default function ProductPage() {
                   <div className="flex items-center gap-4">
                     <span className="text-sm font-medium text-gray-700">Quantity:</span>
                     <div className="flex border-2 border-gray-200 rounded-lg overflow-hidden">
-                      <button 
+                      <button
                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
                         className="px-3 sm:px-4 py-2 hover:bg-gray-100 transition font-semibold text-gray-700 text-sm sm:text-base"
                         disabled={product.stock === 0}
@@ -284,7 +283,7 @@ export default function ProductPage() {
                         −
                       </button>
                       <span className="px-4 sm:px-6 py-2 border-x-2 border-gray-200 font-medium min-w-[50px] sm:min-w-[60px] text-center text-black text-sm sm:text-base">{quantity}</span>
-                      <button 
+                      <button
                         onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
                         className="px-3 sm:px-4 py-2 hover:bg-gray-100 transition font-semibold text-gray-700 text-sm sm:text-base"
                         disabled={product.stock === 0}
@@ -295,7 +294,7 @@ export default function ProductPage() {
                   </div>
 
                   {/* Add to Cart Button */}
-                  <button 
+                  <button
                     onClick={handleAddToCart}
                     disabled={product.stock === 0}
                     className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-[rgb(44_95_124)] text-white font-semibold rounded-xl 
@@ -307,7 +306,7 @@ export default function ProductPage() {
                   </button>
 
                   {/* Order on WhatsApp Button */}
-                  <button 
+                  <button
                     onClick={handleWhatsAppOrder}
                     disabled={product.stock === 0}
                     className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-[#25D366] text-white font-semibold rounded-xl 
@@ -322,14 +321,14 @@ export default function ProductPage() {
                 <div className="mb-6 space-y-3">
                   {/* Cart Item Controls */}
                   <div className="flex items-center justify-between border-2 border-gray-200 rounded-xl px-4 sm:px-6 py-3 sm:py-4 bg-gray-50">
-                    <button 
+                    <button
                       onClick={() => decreaseQty(cartItem.id)}
                       className="text-lg sm:text-xl font-bold text-gray-700 hover:text-[rgb(44_95_124)] transition"
                     >
                       −
                     </button>
                     <span className="text-base sm:text-lg font-semibold text-black">{cartItem.quantity} in cart</span>
-                    <button 
+                    <button
                       onClick={() => increaseQty(cartItem.id)}
                       disabled={cartItem.quantity >= product.stock}
                       className="text-lg sm:text-xl font-bold text-gray-700 hover:text-[rgb(44_95_124)] transition disabled:opacity-50"
@@ -337,13 +336,13 @@ export default function ProductPage() {
                       +
                     </button>
                   </div>
-                  
+
                   <div className="text-center text-xs sm:text-sm text-green-600 font-medium py-2">
                     ✓ Added to cart
                   </div>
 
                   {/* Order on WhatsApp Button */}
-                  <button 
+                  <button
                     onClick={handleWhatsAppOrder}
                     className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-[#25D366] text-white font-semibold rounded-xl 
                                hover:bg-[#20BA5A] transition-all flex items-center justify-center gap-2 shadow-sm text-sm sm:text-base"
@@ -401,7 +400,7 @@ export default function ProductPage() {
 
               <div className="mt-4 text-gray-700 text-xs sm:text-sm space-y-3">
                 <p>{product.description}</p>
-                
+
                 {product.insideBox && product.insideBox.length > 0 && (
                   <div className="mt-4">
                     <p className="font-semibold text-[rgb(44_95_124)] mb-2">What's in the Box:</p>

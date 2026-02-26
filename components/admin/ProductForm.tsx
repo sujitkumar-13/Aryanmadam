@@ -24,19 +24,19 @@ interface ProductFormProps {
 const CATEGORY_STRUCTURE = {
   "Remedies": {
     subcategories: [
-      "Wealth", 
-      "Health", 
-      "Relationship", 
-      "Protection", 
-      "Self-Confidence", 
-      "Education", 
-      "Crown Chakra", 
-      "Third Eye Chakra", 
-      "Throat Chakra", 
-      "Heart Chakra", 
-      "Solar Plexus Chakra", 
-      "Sacral Chakra", 
-      "Root Chakra", 
+      "Wealth",
+      "Health",
+      "Relationship",
+      "Protection",
+      "Self-Confidence",
+      "Education",
+      "Crown Chakra",
+      "Third Eye Chakra",
+      "Throat Chakra",
+      "Heart Chakra",
+      "Solar Plexus Chakra",
+      "Sacral Chakra",
+      "Root Chakra",
       "Vastu"
     ]
   },
@@ -119,12 +119,8 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
     newColours[index] = value;
     setColour(newColours);
 
-    if (index === colour.length - 1 && validator.isHexColor(value)) {
+    if (index === colour.length - 1 && value.trim() !== "") {
       setColour([...newColours, ""]);
-    }
-
-    if (value && !validator.isHexColor(value)) {
-      toast.error("Invalid HEX color (e.g., #FF5733 or #FFF)");
     }
   };
 
@@ -135,8 +131,7 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
 
   const finalHexColours: string[] = colour
     .map((c) => c.trim())
-    .filter((c) => validator.isHexColor(c))
-    .map((c) => String(c));
+    .filter((c) => c !== "");
 
   const router = useRouter();
   const [title, setTitle] = useState("");
@@ -173,7 +168,7 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
   const getSubcategories = () => {
     if (!mainCategory) return [];
     const subcats = CATEGORY_STRUCTURE[mainCategory as keyof typeof CATEGORY_STRUCTURE]?.subcategories;
-    
+
     if (Array.isArray(subcats)) {
       return subcats;
     } else if (typeof subcats === 'object') {
@@ -186,7 +181,7 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
   const getThirdCategories = () => {
     if (!mainCategory || !subCategory) return [];
     const subcats = CATEGORY_STRUCTURE[mainCategory as keyof typeof CATEGORY_STRUCTURE]?.subcategories;
-    
+
     if (subcats && typeof subcats === 'object' && !Array.isArray(subcats)) {
       const thirdLevel = subcats[subCategory as keyof typeof subcats];
       return Array.isArray(thirdLevel) ? thirdLevel : [];
@@ -199,7 +194,7 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
     setMainCategory(value);
     setSubCategory("");
     setThirdCategory("");
-    
+
     const subcats = CATEGORY_STRUCTURE[value as keyof typeof CATEGORY_STRUCTURE]?.subcategories;
     const hasSubcategories = subcats && (Array.isArray(subcats) ? subcats.length > 0 : Object.keys(subcats).length > 0);
     setShowSubcategories(hasSubcategories);
@@ -210,7 +205,7 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
   const handleSubCategoryChange = (value: string) => {
     setSubCategory(value);
     setThirdCategory("");
-    
+
     if (mainCategory && value) {
       const subcats = CATEGORY_STRUCTURE[mainCategory as keyof typeof CATEGORY_STRUCTURE]?.subcategories;
       if (subcats && typeof subcats === 'object' && !Array.isArray(subcats)) {
@@ -383,7 +378,7 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
 
   const handleCreate = async () => {
     const finalCategory = getFinalCategory();
-    
+
     if (
       !title ||
       !description ||
@@ -496,7 +491,7 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
 
   const handleUpdate = async () => {
     const finalCategory = getFinalCategory();
-    
+
     if (
       !title ||
       !description ||
@@ -586,11 +581,10 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
 
         {message && (
           <div
-            className={`p-3 sm:p-4 rounded-lg text-sm sm:text-base ${
-              message.isError
-                ? "bg-red-100 text-red-800"
-                : "bg-green-100 text-green-800"
-            }`}
+            className={`p-3 sm:p-4 rounded-lg text-sm sm:text-base ${message.isError
+              ? "bg-red-100 text-red-800"
+              : "bg-green-100 text-green-800"
+              }`}
           >
             {message.text}
           </div>
@@ -631,7 +625,7 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
           <label className="block text-gray-700 font-medium mb-1 text-sm sm:text-base">
             Category <span className="text-red-500">*</span>
           </label>
-          
+
           {/* Main Category */}
           <select
             value={mainCategory}
@@ -831,20 +825,17 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
                 <input
                   type="text"
                   value={col}
-                  onChange={(e) => handleColourChange(index, e.target.value.trim())}
-                  placeholder="#FF5733 (optional)"
-                  className={`flex-1 outline-none p-2.5 sm:p-3 text-sm sm:text-base text-gray-900 rounded-lg border focus:ring-2 bg-white ${
-                    col
-                      ? validator.isHexColor(col)
-                        ? "focus:ring-green-400 border-green-400"
-                        : "focus:ring-red-400 border-gray-300"
-                      : "focus:ring-amber-400 border-gray-300"
-                  }`}
+                  onChange={(e) => handleColourChange(index, e.target.value)}
+                  placeholder="e.g., #FF5733 or Red (optional)"
+                  className={`flex-1 outline-none p-2.5 sm:p-3 text-sm sm:text-base text-gray-900 rounded-lg border focus:ring-2 bg-white ${col
+                    ? "focus:ring-green-400 border-green-400"
+                    : "focus:ring-amber-400 border-gray-300"
+                    }`}
                 />
-                {validator.isHexColor(col) && (
+                {col && (
                   <div
                     className="w-8 h-8 rounded-md border"
-                    style={{ backgroundColor: col }}
+                    style={{ backgroundColor: col.replace(/\s+/g, '').toLowerCase() }}
                   />
                 )}
               </div>
@@ -922,11 +913,10 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
             ))}
 
             <label
-              className={`w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center border-2 border-dashed rounded-lg cursor-pointer transition ${
-                loading
-                  ? "border-gray-200 text-gray-400"
-                  : "border-gray-300 hover:border-amber-400"
-              }`}
+              className={`w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center border-2 border-dashed rounded-lg cursor-pointer transition ${loading
+                ? "border-gray-200 text-gray-400"
+                : "border-gray-300 hover:border-amber-400"
+                }`}
             >
               <Plus className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 mb-1" />
               <span className="text-gray-400 text-xs sm:text-sm">Upload</span>
@@ -952,7 +942,7 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
           <label className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
             Product Video <span className="text-gray-400 text-xs">(optional)</span>
           </label>
-          
+
           {video ? (
             <div className="relative w-full max-w-md">
               <div className="w-full rounded-lg overflow-hidden border border-gray-200 bg-black">
@@ -973,11 +963,10 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
             </div>
           ) : (
             <label
-              className={`w-full max-w-md h-32 flex flex-col items-center justify-center border-2 border-dashed rounded-lg cursor-pointer transition ${
-                loading
-                  ? "border-gray-200 text-gray-400"
-                  : "border-gray-300 hover:border-amber-400"
-              }`}
+              className={`w-full max-w-md h-32 flex flex-col items-center justify-center border-2 border-dashed rounded-lg cursor-pointer transition ${loading
+                ? "border-gray-200 text-gray-400"
+                : "border-gray-300 hover:border-amber-400"
+                }`}
             >
               <Video className="w-8 h-8 text-gray-400 mb-2" />
               <span className="text-gray-400 text-sm">Upload Video</span>
@@ -1014,8 +1003,8 @@ const ProductForm = ({ id, mode = "create", product }: ProductFormProps) => {
                 ? "Uploading Video..."
                 : "Saving..."
               : isUpdateMode
-              ? "Update"
-              : "Create"}
+                ? "Update"
+                : "Create"}
           </button>
         </div>
       </div>
