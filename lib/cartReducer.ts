@@ -24,14 +24,14 @@ export const cartReducer = (
         return {
           items: state.items.map((item) =>
             item.id === action.payload.id
-              ? { ...item, quantity: item.quantity + 1 }
+              ? { ...item, quantity: item.quantity + (action.payload.quantity || 1) }
               : item
           ),
         };
       }
 
       return {
-        items: [...state.items, { ...action.payload, quantity: 1 }],
+        items: [...state.items, { ...action.payload, quantity: action.payload.quantity || 1 }],
       };
     }
 

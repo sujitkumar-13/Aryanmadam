@@ -31,7 +31,7 @@ interface Product {
 
 export default function CoirProductDetailPage() {
   const params = useParams();
-  const router = useRouter();
+  // const router = useRouter(); // Unused variable commented out for optimization
   const id = params.id as string;
 
   const [product, setProduct] = useState<Product | null>(null);
@@ -95,15 +95,13 @@ export default function CoirProductDetailPage() {
 
   const handleAddToCart = () => {
     if (product) {
-      for (let i = 0; i < quantity; i++) {
-        addToCart({
+      addToCart({
           id: product.id,
           title: product.title,
           price: product.price,
           image: product.images[0] || '/placeholder.jpg',
-          quantity: 1,
+          quantity: quantity,
         });
-      }
       setQuantity(1);
     }
   };

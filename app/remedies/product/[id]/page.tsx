@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useCart } from "@/app/providers/CartProvider";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { ShoppingCart, MessageCircle } from "lucide-react";
 
 interface Product {
@@ -23,7 +23,7 @@ interface Product {
 
 export default function RemedyProductPage() {
   const params = useParams();
-  const router = useRouter();
+  // const router = useRouter(); // Unused variable commented out for optimization
   const id = params.id as string;
 
   const [product, setProduct] = useState<Product | null>(null);
@@ -88,15 +88,13 @@ export default function RemedyProductPage() {
 
   const handleAddToCart = () => {
     if (product) {
-      for (let i = 0; i < quantity; i++) {
-        addToCart({
-          id: product.id,
-          title: product.title,
-          price: product.price,
-          image: product.images[0] || '/placeholder.jpg',
-          quantity: 1,
-        });
-      }
+      addToCart({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        image: product.images[0] || '/placeholder.jpg',
+        quantity: quantity,
+      });
       setQuantity(1); // Reset quantity after adding
     }
   };
