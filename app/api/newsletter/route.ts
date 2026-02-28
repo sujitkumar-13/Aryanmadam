@@ -20,14 +20,12 @@ async function sendWelcomeEmail(email: string) {
       subject: 'Welcome to Our Creative Community! 🎉',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eaeaeb; border-radius: 10px;">
-          <div style="text-align: center; margin-bottom: 5px;">
-            <img src="https://raw.githubusercontent.com/sujitkumar-13/Aryanmadam/main/public/assets/logo6.png" alt="Arya Madam Craft Supplies Logo" style="max-height: 80px; width: auto; object-fit: contain; margin-bottom: 10px;">
-            <h1 style="color: #2c5f7c; margin-bottom: 5px;">Arya Madam</h1>
-            <p style="color: #666; font-size: 14px; margin-top: 0;">Craft Supplies</p>
+          <div style="text-align: center;">
+            <img src="https://raw.githubusercontent.com/sujitkumar-13/Aryanmadam/main/public/assets/logo6.png" alt="Arya Madam Craft Supplies Logo" style="max-height: 80px; width: auto; object-fit: contain;">
           </div>
           
-          <div style="background-color: #f8f9fa; padding: 30px; border-radius: 8px; text-align: center;">
-            <h2 style="color: #333; margin-bottom: 15px;">Welcome to Our Community! 🎨</h2>
+          <div style="background-color: #f8f9fa; padding: 15px 30px 30px; border-radius: 8px; text-align: center;">
+            <h2 style="color: #333; margin-top: 0; margin-bottom: 15px;">Welcome to Our Community! 🎨</h2>
             <p style="color: #555; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
               Thank you for subscribing to the Arya Madam Craft Supplies newsletter! We're thrilled to have you join our creative family.
             </p>
